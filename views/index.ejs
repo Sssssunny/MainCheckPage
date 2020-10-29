@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팝업창</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/jquery-1.12.3.js"></script>
+    <script src="/app.js"></script>
+</head>
+<% 
+    var a = 5
+    var b = 3
+    var c = 1
+    var d = 4
+    var e = 1
+%> 
+<body>
+    <!-- 팝업 영역 -->
+    <div class="popup">
+        <div class="container">
+            <div class="item i1"><p>출고 : <%= a %></p></div>
+            <div class="item i2"><p>미출고 : <%= b  %> </p></div>
+            <div class="item i3"><p>주문 : <%= c %></p></div>
+            <div class="item i4"><p>취소 : <%= d %></p></div>
+            <div class="item i5"><p>반품 : <%= e %></p></div>
+        </div>
+        <table class="tbl t1" border="1">
+            <tr>
+                <th>1</th>
+                <th>이름</th>
+            </tr>
+        </table>
+        <table class="tbl t2" border="1">
+            <tr>
+                <th>2</th>
+                <th>이름</th>
+            </tr>
+        </table>
+        <table class="tbl t3" border="1">
+            <tr>
+                <th>3</th>
+                <th>이름</th>
+            </tr>
+        </table>
+        <table class="tbl t4" border="1">
+            <tr>
+                <th>4</th>
+                <th>이름</th>
+            </tr>
+        </table>
+        <table class="tbl t5" border="1">
+            <tr>
+                <th>5</th>
+                <th>이름</th>
+            </tr>
+        </table>
+        <input type="button" class="btn" value="확인">
+    </div>
+
+    <!-- 메인페이지 영역 -->
+    <p class="main">메인페이지입니다</p>
+</body>
+</html>

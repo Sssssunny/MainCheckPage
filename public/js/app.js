@@ -1,16 +1,16 @@
-var out = 0 , notout = 0 , order = 0 , cancel = 0 , banpum = 0  ;
+var out = 0, notout = 0, order = 0, cancel = 0, banpum = 0;
 
-$(document).ready(function(){
-    $(".btn").click(function(){ // 버튼 클릭시
-        if(out == 0 || notout == 0 || order == 0 || cancel == 0 || banpum == 0){
+$(document).ready(function () {
+    $(".btn").click(function () { // 버튼 클릭시
+        if (out == 0 || notout == 0 || order == 0 || cancel == 0 || banpum == 0) {
             alert("확인해주세요");
         }
-        else if(out == 1 && notout == 1 && order == 1 && cancel == 1 && banpum == 1){
-            if(confirm("정말 확인하셨습니까?")){ // 확인창이 뜨고 확인을 누르면
+        else if (out == 1 && notout == 1 && order == 1 && cancel == 1 && banpum == 1) {
+            if (confirm("정말 확인하셨습니까?")) { // 확인창이 뜨고 확인을 누르면
                 alert("메인페이지로 이동합니다"); // "메인페이지로 이동합니다" 문구가 뜨면서
                 $(".popup").hide(); // 팝업창이 꺼진다(숨김)
             }
-            else{
+            else {
                 alert("다시 내용을 확인해주세요"); // "다시 내용을 확인해주세요" 문구가 뜨고 팝업창이 그대로 유지된다
             }
         }
@@ -18,10 +18,10 @@ $(document).ready(function(){
 
     var click = 0, click2 = 0, click3 = 0, click4 = 0, click5 = 0; // 모든 요소의 클릭 횟수를 0으로 선언한다(초기화)
 
-    $(".i1").click(function(){ // 클릭 시
+    $(".i1").click(function () { // 클릭 시
         click++; // 클릭 횟수 증가
         out = 1;
-        switch(click){
+        switch (click) {
             case 1: // 클릭 횟수가 1일 때
                 $(".tbl").hide(); // 모든 테이블 숨기고
                 click2 = 0, click3 = 0, click4 = 0, click5 = 0; // 다른 요소의 클릭 횟수를 0으로 초기화 한 뒤
@@ -34,10 +34,10 @@ $(document).ready(function(){
         }
     });
 
-    $(".i2").click(function(){
+    $(".i2").click(function () {
         click2++;
         notout = 1;
-        switch(click2){
+        switch (click2) {
             case 1:
                 $(".tbl").hide();
                 click = 0, click3 = 0, click4 = 0, click5 = 0;
@@ -50,10 +50,10 @@ $(document).ready(function(){
         }
     });
 
-    $(".i3").click(function(){
+    $(".i3").click(function () {
         click3++;
         order = 1;
-        switch(click3){
+        switch (click3) {
             case 1:
                 $(".tbl").hide();
                 click = 0, click2 = 0, click4 = 0, click5 = 0;
@@ -66,10 +66,10 @@ $(document).ready(function(){
         }
     });
 
-    $(".i4").click(function(){
+    $(".i4").click(function () {
         click4++;
         cancel = 1;
-        switch(click4){
+        switch (click4) {
             case 1:
                 $(".tbl").hide();
                 click = 0, click2 = 0, click3 = 0, click5 = 0;
@@ -82,10 +82,10 @@ $(document).ready(function(){
         }
     });
 
-    $(".i5").click(function(){
+    $(".i5").click(function () {
         click5++;
         banpum = 1;
-        switch(click5){
+        switch (click5) {
             case 1:
                 $(".tbl").hide();
                 click = 0, click2 = 0, click3 = 0, click4 = 0;

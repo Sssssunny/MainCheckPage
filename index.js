@@ -1,4 +1,5 @@
 const express = require("express");
+const { promises } = require("fs");
 const odbc = require("odbc")
 const app = express()
 
@@ -7,21 +8,47 @@ app.use(express.static(__dirname + '/views'))
 app.use(express.static(__dirname + '/public/css'));
 app.use(express.static(__dirname + '/public/js'));
 
+  var cnt_total = 0
+  var cnt_c = 0
+  var cnt_cancel = 0
+  var cnt_change = 0
+  var cnt_yet = 0
 
-app.get("/", function (req, res) {
+async function connectToDatabase(brandCode) {
+  var brandCode = brandCode
+  var query = "SELECT * FROM Popup WHERE brandCode='"+brandCode+"'";
+  console.log(brandCode)
+    await odbc.connect('DSN=mydsn2;UID=st01;PWD=qawsedr',(error,connection)=>{
+    connection.query(query,(error,result)=>{
 
-  async function connectToDatabase() {
-    const connection1 = await odbc.connect('DRIVER = filemaker odbc ,',(error,connection)=>{
-      if(error){
-        console.log('데이터베이스에 연결하지못했습니다')
-      }else if(connection){
-        connection.query("select * from CS_web where ")
-      }
-    });
+      cnt_total = (result[0].cnt_total==null ? 0 : result[0].cnt_total)
+      cnt_c = (result[0].cnt_c==null ? 0 : result[0].cnt_c) 
+      cnt_cancel = (result[0].cnt_cancel==null ? 0 : result[0].cnt_cancel)
+      cnt_change = (result[0].cnt_change==null ? 0 : result[0].cnt_change)
+      cnt_yet = (result[0].cnt_yet==null ? 0 : result[0].cnt_yet)
+
+      console.log("신규주문:"+cnt_c)
+      console.log("총주문:"+cnt_total)
+      console.log("취소:"+cnt_cancel)
+      console.log("변경:"+cnt_change)
+      console.log("미발송:"+cnt_yet)
+    })
+  });
 }
-  res.render('index.ejs')
+ app.get("/", function (req, res) {
+  var brandCode = "TB"
+    connectToDatabase(brandCode)
+    setTimeout(() => {
+      res.render('index.ejs',{
+        cnt_c:cnt_c,
+        cnt_cancel:cnt_cancel,
+        cnt_change:cnt_change,
+        cnt_total:cnt_total,
+        cnt_yet:cnt_yet
+      })
+    }, 480);
 });
-
-app.listen(3000,()=>{
-    console.log("서버오픈")
+ 
+app.listen(30000,()=>{
+    console.log("http://localhost:30000")
 })

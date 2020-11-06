@@ -9,21 +9,21 @@
     <script src="/app.js"></script>
 </head>
 <% 
-    var a = 5
-    var b = 3
-    var c = 1
-    var d = 4
-    var e = 1
+    var c = cnt_c
+    var total = cnt_total 
+    var yet = cnt_yet
+    var cancel = cnt_cancel
+    var change = cnt_change
 %> 
 <body>
     <!-- 팝업 영역 -->
     <div class="popup">
         <div class="container">
-            <div class="item i1"><p>출고 : <%= a %></p></div>
-            <div class="item i2"><p>미출고 : <%= b  %> </p></div>
-            <div class="item i3"><p>주문 : <%= c %></p></div>
-            <div class="item i4"><p>취소 : <%= d %></p></div>
-            <div class="item i5"><p>반품 : <%= e %></p></div>
+            <div class="item i1"><p>신규주문 : <%= c %></p></div>
+            <div class="item i2"><p>총주문 : <%= total  %> </p></div>
+            <div class="item i3"><p>미발송 : <%= yet %></p></div>
+            <div class="item i4"><p>취소 : <%= cancel %></p></div>
+            <div class="item i5"><p>변경 : <%= change %></p></div>
         </div>
         <table class="tbl t1" border="1">
             <tr>

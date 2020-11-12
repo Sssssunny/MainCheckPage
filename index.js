@@ -73,7 +73,6 @@ app.get("/popup",(req,res)=>{
     CS_data:CS_data
   })
 })
-console.log("aaa")
  
 app.listen(8000,()=>{
     console.log("http://localhost:8000")  

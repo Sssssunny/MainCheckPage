@@ -7,4 +7,4 @@ live:
   path:
     local: "/"
     remote: "/pro1"
-post-commit: ".git/hooks"
+  post-commit: ".git/hooks"

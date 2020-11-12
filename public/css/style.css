@@ -21,6 +21,10 @@ a {
   color: #000; /* 글씨색 : 검은색(#000) */
 }
 
+p {
+  cursor: pointer;
+}
+
 /* 팝업창 영역 */
 .popup {
   position: fixed; /* 원래 위치와 상관없이 위치 지정 */
@@ -96,6 +100,51 @@ a {
   width: 200px; /* 가로 크기 200px */
   text-align: center; /* 텍스트 가운데 정렬 */
   line-height: 30px; /* 줄 높이 30px */
+  border-collapse: collapse;
+}
+
+.tbl tbody {
+  overflow-y: auto; /* y축 스크롤바 O */
+  overflow-x: hidden; /* x축 스크롤바 X */
+  float: left;
+  width: 1200px;
+  height: 300px;
+}
+
+.tbl tbody tr {
+  display: table; /* table이다 */
+  width: 1200px;
+}
+
+.td1,
+.td5 {
+  /* 접수일, 주문번호 */
+  width: 150px;
+}
+
+.td2,
+.td3,
+.td4 {
+  /* 주문구분, 사이트, 수취인 */
+  width: 100px;
+}
+
+/* .td4 {
+  display: inline-block;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+} */
+
+.td6 {
+  /* 상품명/옵션 */
+  width: 550px;
+}
+
+.td7 {
+  /* 수량 */
+  width: 50px;
 }
 
 /* button */
@@ -112,6 +161,13 @@ a {
   color: #fff; /* 글씨 색 : 흰색 */
   background-color: #333; /* 배경 색 : 약간 밝은 검은색 */
   cursor: pointer; /* 버튼에 마우스 오버시 한 쪽을 가리키는 손 모양으로 나타남 */
+  display: none;
+}
+
+.ju {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
 
 /* 메인페이지 영역 */

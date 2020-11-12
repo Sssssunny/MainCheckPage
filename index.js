@@ -13,11 +13,11 @@ app.use(express.static(__dirname + '/public/js'));
   var cnt_cancel = 0
   var cnt_change = 0
   var cnt_yet = 0
+  var CS_data = []
 
 async function connectToDatabase(brandCode) {
   var brandCode = brandCode
   var query = "SELECT * FROM Popup WHERE brandCode='"+brandCode+"'";
-  console.log(brandCode)
     await odbc.connect('DSN=mydsn2;UID=st01;PWD=qawsedr',(error,connection)=>{
     connection.query(query,(error,result)=>{
 
@@ -29,26 +29,52 @@ async function connectToDatabase(brandCode) {
 
       console.log("신규주문:"+cnt_c)
       console.log("총주문:"+cnt_total)
+      console.log("미발송:"+cnt_yet)
       console.log("취소:"+cnt_cancel)
       console.log("변경:"+cnt_change)
-      console.log("미발송:"+cnt_yet)
+    })
+  });
+}
+async function CSload(brandCode) {
+  var brandCode = brandCode
+  var query = "SELECT * FROM Popup_CS_data WHERE brandCode='"+brandCode+"'";
+  console.log(brandCode)
+    await odbc.connect('DSN=mydsn2;UID=st01;PWD=qawsedr',(error,connection)=>{
+    connection.query(query,(error,result)=>{
+      CS_data = result
+      console.log('CS_data로딩완료')
     })
   });
 }
  app.get("/", function (req, res) {
-  var brandCode = "TB"
+  console.clear()
+  var brandCode = req.params.brandCode||"ZZ"
+  if(!brandCode){
+    res.send("<script>alert('브랜드코드가 존제하지 않습니다');self.close()</script>")
+  }else{
     connectToDatabase(brandCode)
-    setTimeout(() => {
+    .then(CSload(brandCode))
+    .then(setTimeout(() => {
       res.render('index.ejs',{
-        cnt_c:cnt_c,
-        cnt_cancel:cnt_cancel,
-        cnt_change:cnt_change,
-        cnt_total:cnt_total,
-        cnt_yet:cnt_yet
-      })
-    }, 480);
+            CS_data:CS_data,
+            cnt_c:cnt_c,
+            cnt_cancel:cnt_cancel,
+            cnt_change:cnt_change,
+            cnt_total:cnt_total,
+            cnt_yet:cnt_yet
+    })}, 2000));
+  }
 });
+
+app.get("/popup",(req,res)=>{
+  var idx = req.param('idx') 
+  res.render('popup.ejs',{
+    idx:idx,
+    CS_data:CS_data
+  })
+})
+console.log("aaa")
  
-app.listen(30000,()=>{
-    console.log("http://localhost:30000")
+app.listen(8000,()=>{
+    console.log("http://localhost:8000")  
 })

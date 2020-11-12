@@ -1,11 +1,18 @@
 var out = 0 , notout = 0 , order = 0 , cancel = 0 , banpum = 0  ;
 
 $(document).ready(function(){
+    setInterval(()=>{
+        if(out == 1 && notout == 1 && order == 1 && cancel == 1 && banpum == 1){
+            $(".ju").hide();
+            $(".btn").show();
+        }
+    },100)
     $(".btn").click(function(){ // 버튼 클릭시
         if(out == 0 || notout == 0 || order == 0 || cancel == 0 || banpum == 0){
             alert("확인해주세요");
         }
         else if(out == 1 && notout == 1 && order == 1 && cancel == 1 && banpum == 1){
+            $(".ju").hide();
             if(confirm("정말 확인하셨습니까?")){ // 확인창이 뜨고 확인을 누르면
                 alert("메인페이지로 이동합니다"); // "메인페이지로 이동합니다" 문구가 뜨면서
                 $(".popup").hide(); // 팝업창이 꺼진다(숨김)
@@ -97,6 +104,8 @@ $(document).ready(function(){
                 break;
         }
     });
+
+
 
     // 마우스 올려놓으면 테이블 보이기
     // $(".item").mouseover(function(){ // 올려놓았을 때

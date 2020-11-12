@@ -1,0 +1,10 @@
+live:
+  scheme: "ftp"
+  host: 13.209.64.204
+  port: 21
+  user: "jws020501"
+  pass: "jws020507"
+  path:
+    local: "/"
+    remote: "/pro1"
+post-commit: ".git/hooks"

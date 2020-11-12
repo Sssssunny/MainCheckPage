@@ -7,55 +7,94 @@
     <link rel="stylesheet" href="/style.css">
     <script src="/jquery-1.12.3.js"></script>
     <script src="/app.js"></script>
+    <% 
+    var CS_data = CS_data
+    var cnt_c = cnt_c
+    var cnt_total = cnt_total 
+    var cnt_yet = cnt_yet
+    var cnt_cancel = cnt_cancel
+    var cnt_change = cnt_change
+    %>
 </head>
-<% 
-    var c = cnt_c
-    var total = cnt_total 
-    var yet = cnt_yet
-    var cancel = cnt_cancel
-    var change = cnt_change
-%> 
 <body>
     <!-- 팝업 영역 -->
     <div class="popup">
         <div class="container">
-            <div class="item i1"><p>신규주문 : <%= c %></p></div>
-            <div class="item i2"><p>총주문 : <%= total  %> </p></div>
-            <div class="item i3"><p>미발송 : <%= yet %></p></div>
-            <div class="item i4"><p>취소 : <%= cancel %></p></div>
-            <div class="item i5"><p>변경 : <%= change %></p></div>
+            <div class="item i1"><p>신규주문 : <%= cnt_c %></p></div>
+            <div class="item i2"><p>총주문 : <%= cnt_total  %> </p></div>
+            <div class="item i3"><p>미발송 : <%= cnt_yet %></p></div>
+            <div class="item i4"><p>취소 : <%= cnt_cancel %></p></div>
+            <div class="item i5"><p>변경 : <%= cnt_change %></p></div>
         </div>
         <table class="tbl t1" border="1">
             <tr>
-                <th>1</th>
-                <th>이름</th>
+                <th class="td1">접수일</th>
+                <th class="td2">주문구분</th>
+                <th class="td3">사이트</th>
+                <th class="td4">수취인</th>
+                <th class="td5">주문번호</th>
+                <th class="td6">상품명/옵션</th>
+                <th class="td7">수량</th>
             </tr>
         </table>
         <table class="tbl t2" border="1">
-            <tr>
-                <th>2</th>
-                <th>이름</th>
+            <tr>  
+                <th class="td1">접수일</th>
+                <th class="td2">주문구분</th>
+                <th class="td3">사이트</th>
+                <th class="td4">수취인</th>
+                <th class="td5">주문번호</th>
+                <th class="td6">상품명/옵션</th>
+                <th class="td7">수량</th>
             </tr>
+            <div>
+            <% for (let i = 0; i < CS_data.length; i++) { %>
+            <tr>
+                <td class="td1"><%= JSON.stringify(CS_data[i].Reception_date) %> </td>
+                <td class="td2"><%= JSON.stringify(CS_data[i].division) %> </td>
+                <td class="td3"><%= JSON.stringify(CS_data[i].site) %> </td>
+                <td class="td4"><%= JSON.stringify(CS_data[i].reciever) %> </td>
+                <td class="td5"><a style="color: #FF3366;" href="/popup?idx=<%=i%>"><%= JSON.stringify(CS_data[i].order_num) %></a></td>
+                <td class="td6"><%= JSON.stringify(CS_data[i].product_option) %></td>
+                <td class="td7"><%= JSON.stringify(CS_data[i].sale_cnt) %> </td>
+            </tr>
+        <%}%>
+            </div>
         </table>
         <table class="tbl t3" border="1">
-            <tr>
-                <th>3</th>
-                <th>이름</th>
+            <tr>  
+                <th class="td1">접수일</th>
+                <th class="td2">주문구분</th>
+                <th class="td3">사이트</th>
+                <th class="td4">수취인</th>
+                <th class="td5">주문번호</th>
+                <th class="td6">상품명/옵션</th>
+                <th class="td7">수량</th>
             </tr>
         </table>
         <table class="tbl t4" border="1">
-            <tr>
-                <th>4</th>
-                <th>이름</th>
+            <tr>  
+                <th class="td1">접수일</th>
+                <th class="td2">주문구분</th>
+                <th class="td3">사이트</th>
+                <th class="td4">수취인</th>
+                <th class="td5">주문번호</th>
+                <th class="td6">상품명/옵션</th>
+                <th class="td7">수량</th>
             </tr>
         </table>
         <table class="tbl t5" border="1">
-            <tr>
-                <th>5</th>
-                <th>이름</th>
+            <tr>  
+                <th class="td1">접수일</th>
+                <th class="td2">주문구분</th>
+                <th class="td3">사이트</th>
+                <th class="td4">수취인</th>
+                <th class="td5">주문번호</th>
+                <th class="td6">상품명/옵션</th>
+                <th class="td7">수량</th>
             </tr>
         </table>
-        <input type="button" class="btn" value="확인">
+        <small class="ju">내역을 전부 확인하셔야 넘어갈 수 있습니다</small><input type="button" class="btn" value="확인">
     </div>
 
     <!-- 메인페이지 영역 -->

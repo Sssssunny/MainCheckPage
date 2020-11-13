@@ -15,6 +15,9 @@ app.use(express.static(__dirname + '/public/js'));
   var cnt_yet = 0
   var CS_data = []
 
+  console.log("11");
+  console.log("22")
+
 async function connectToDatabase(brandCode) {
   var brandCode = brandCode
   var query = "SELECT * FROM Popup WHERE brandCode='"+brandCode+"'";
